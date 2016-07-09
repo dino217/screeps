@@ -16,7 +16,7 @@ module.exports = function() {
 
     if (numberOfHarvesters < minimumNumberOfHarvesters){
       roleToBuild = 'harvester';
-      bodyToBuild = [WORK,CARRY,MOVE];
+      bodyToBuild = [WORK,CARRY,MOVE,WORK];
     }
     else if (numberOfUpgraders < minimumNumberOfUpgraders) {
       roleToBuild = 'upgrader';
