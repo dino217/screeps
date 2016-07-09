@@ -21,11 +21,14 @@ module.exports = {
       var source = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
         filter: (s) => ((s.structureType == STRUCTURE_SPAWN
                       || s.structureType == STRUCTURE_EXTENSION)
-                      && s.energy < s.energyCapacity
-                      && !s.memory.hold)
+                      && s.energy < s.energyCapacity)
       });
+      var nearestSpawn = creep.pos.findClosestByRange(FIND_MY_STRUCTURES{
+        filter: (s) => s.structureType == STRUCTURE_SPAWN
+      });
+      var energyHold = nearestSpawn.memory.hold
 
-      if (source && source.transferEnergy(creep) === ERR_NOT_IN_RANGE) {
+      if (!energyHold && source && source.transferEnergy(creep) === ERR_NOT_IN_RANGE) {
         creep.moveTo(source);
       }
     }

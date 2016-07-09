@@ -35,7 +35,6 @@ module.exports = function() {
 
     if (!roleToBuild){
       this.memory.hold = false;
-      this.setHoldOnExtensions(false);
       return;
     }
 
@@ -43,21 +42,10 @@ module.exports = function() {
 
     if (enoughEnergy) {
       this.memory.hold = false;
-      this.setHoldOnExtensions(false);
       return this.createCreep(bodyToBuild, undefined, {role: roleToBuild});
     }
     else {
-      this.setHoldOnExtensions(true);
       return this.memory.hold = true;
-    }
-  };
-
-  StructureSpawn.prototype.setHoldOnExtensions = function (bool) {
-    var extensions = this.room.find(FIND_MY_STRUCTURES, {
-      filter: (s) => s.structureType == STRUCTURE_EXTENSION
-    });
-    for (let e in extensions){
-      e.memory.hold = bool;
     }
   };
 }
