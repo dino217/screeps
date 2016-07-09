@@ -11,12 +11,12 @@ module.exports = {
 
     // If the creep has energy it should do work
     if (creep.memory.working) {
-      var controller = creep.room.controller;
-      if (creep.upgradeController(controller) === ERR_NOT_IN_RANGE) {
-        creep.moveTo(controller);
+      var constructionSite = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
+      if (creep.build(constructionSite) === ERR_NOT_IN_RANGE) {
+        creep.moveTo(constructionSite);
       }
     }
-    // If the upgrader is not working, it should get energy so it can work.
+    // If the builder is not working, it should get energy so it can work.
     if (!creep.memory.working) {
       var source = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
         filter: (s) => ((s.structureType == STRUCTURE_SPAWN
