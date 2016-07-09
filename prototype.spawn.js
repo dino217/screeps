@@ -5,6 +5,7 @@ module.exports = function() {
     var minimumNumberOfBuilders = 2;
     var minimumNumberOfRepairers = 1;
     var minimumNumberOfWallRepairers = 1;
+    var minimumNumberOfCouriers = 1;
 
     // count the number of creeps alive for each role
     // _.sum will count the number of properties in Game.creeps filtered by the
@@ -14,6 +15,7 @@ module.exports = function() {
     var numberOfBuilders = _.sum(Game.creeps, (c) => c.memory.role == 'builder');
     var numberOfRepairers = _.sum(Game.creeps, (c) => c.memory.role == 'repairer');
     var numberOfWallRepairers = _.sum(Game.creeps, (c) => c.memory.role == 'wallRepairer');
+    var numberOfCouriers = _.sum(Game.creeps, (c) => c.memory.role == 'courier');
 
     var roleToBuild = undefined;
     var bodyToBuild = undefined;
@@ -21,6 +23,10 @@ module.exports = function() {
     if (numberOfHarvesters < minimumNumberOfHarvesters){
       roleToBuild = 'harvester';
       bodyToBuild = [WORK,CARRY,MOVE,WORK];
+    }
+    if (numberOfCouriers < minimumNumberOfCouriers) {
+      roleToBuild = 'courier';
+      bodyToBuild = [MOVE,MOVE,MOVE,CARRY,CARRY,CARRY];
     }
     else if (numberOfUpgraders < minimumNumberOfUpgraders) {
       roleToBuild = 'upgrader';

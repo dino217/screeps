@@ -6,6 +6,7 @@ var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleRepairer = require('role.repairer');
 var roleWallRepairer = require('role.wallRepairer');
+var roleCourier = require('role.courier');
 
 module.exports.loop = function () {
   Game.spawns.Spawn1.autobuild();
@@ -31,6 +32,10 @@ module.exports.loop = function () {
 
     if (creep.memory.role === 'wallRepairer') {
       roleWallRepairer.run(creep);
+    }
+
+    if (creep.memory.role === 'courier'){
+      roleCourier.run(creep);
     }
   }
 }
