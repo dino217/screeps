@@ -18,7 +18,7 @@ module.exports = {
               && s.my
               )
               || (s.structureType == STRUCTURE_CONTAINER
-              &&  s.store < s.storeCapacity)
+              &&  _.sum(s.store) < s.storeCapacity)
       });
       if (creep.transfer(spawn, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
         creep.moveTo(spawn);
