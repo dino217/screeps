@@ -23,7 +23,7 @@ module.exports = {
                       || s.structureType == STRUCTURE_EXTENSION)
                       && s.energy < s.energyCapacity)
       });
-      var nearestSpawn = creep.pos.findClosestByRange(FIND_MY_STRUCTURES{
+      var nearestSpawn = creep.pos.findClosestByRange(FIND_MY_STRUCTURES, {
         filter: (s) => s.structureType == STRUCTURE_SPAWN
       });
       var energyHold = nearestSpawn.memory.hold
