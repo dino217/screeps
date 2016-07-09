@@ -1,3 +1,5 @@
+var roleUpgrader = require('role.upgrader');
+
 module.exports = {
   run: function(creep) {
     // If the harvester is working, but runs out of energy, it should switch to not working.
@@ -12,8 +14,14 @@ module.exports = {
     // If the creep has energy it should do work
     if (creep.memory.working) {
       var constructionSite = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
-      if (creep.build(constructionSite) === ERR_NOT_IN_RANGE) {
-        creep.moveTo(constructionSite);
+      if (constructionSite) {
+        if (creep.build(constructionSite) === ERR_NOT_IN_RANGE) {
+          creep.moveTo(constructionSite);
+        }
+      }
+      // If there is nothing to build, work on upgrading the controller.
+      else {
+        roleUpgrader.run(creep);
       }
     }
     // If the builder is not working, it should get energy so it can work.
