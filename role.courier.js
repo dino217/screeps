@@ -36,9 +36,7 @@ module.exports = {
         filter: (s) => (
           s.structureType == STRUCTURE_CONTAINER &&
           _.sum(s.store) > 0)
-        )
       })
-      }
     }
   }
 }
