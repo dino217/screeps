@@ -21,7 +21,8 @@ module.exports = {
       var source = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
         filter: (s) => ((s.structureType == STRUCTURE_SPAWN
                       || s.structureType == STRUCTURE_EXTENSION)
-                      && s.energy < s.energyCapacity)
+                      && s.energy < s.energyCapacity
+                      && !s.memory.hold)
       });
 
       if (source && source.transferEnergy(creep) === ERR_NOT_IN_RANGE) {

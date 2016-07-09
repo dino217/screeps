@@ -1,9 +1,12 @@
 "use strict";
+require('prototype.spawn')();
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 
 module.exports.loop = function () {
+  Game.spawns.Spawn1.autobuild();
+
   for(let name in Game.creeps) {
     var creep = Game.creeps[name];
 
