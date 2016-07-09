@@ -24,7 +24,7 @@ module.exports = {
                       && s.energy < s.energyCapacity)
       });
 
-      if (source.transfer(creep) === ERR_NOT_IN_RANGE) {
+      if (source.transferEnergy(creep) === ERR_NOT_IN_RANGE) {
         creep.moveTo(source);
       }
     }
