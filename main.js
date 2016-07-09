@@ -1,5 +1,6 @@
 "use strict";
 require('prototype.spawn')();
+require('prototype.creep')();
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');

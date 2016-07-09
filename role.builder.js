@@ -1,3 +1,4 @@
+require('prototype.creep')();
 var roleUpgrader = require('role.upgrader');
 
 module.exports = {
@@ -26,19 +27,17 @@ module.exports = {
     }
     // If the builder is not working, it should get energy so it can work.
     if (!creep.memory.working) {
-      var source = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
-        filter: (s) => ((s.structureType == STRUCTURE_SPAWN
-                      || s.structureType == STRUCTURE_EXTENSION)
-                      && s.energy > 0)
-      });
+      var source = creep.findNearestEnergyHoldingStructure();
       var nearestSpawn = creep.pos.findClosestByRange(FIND_MY_STRUCTURES, {
         filter: (s) => s.structureType == STRUCTURE_SPAWN
       });
-      var energyHold = nearestSpawn.memory.hold
+      var energyHold = nearestSpawn.memory.hold;
 
-      if (!energyHold && source && source.transferEnergy(creep) === ERR_NOT_IN_RANGE) {
+      if (source) {
         creep.moveTo(source);
       }
+
+      if (!energyHold && source && source.transferEnergy(creep)) {}
     }
   }
 }
