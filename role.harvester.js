@@ -12,7 +12,7 @@ module.exports = {
     // If the creep has energy it should do work
     if (creep.memory.working) {
       var spawn = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
-        filter: (s.structureType == STRUCTURE_SPAWN
+        filter: (s) => (s.structureType == STRUCTURE_SPAWN
               || s.structureType == STRUCTURE_EXTENSION)
               && s.energy < s.energyCapacity
       })
