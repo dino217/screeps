@@ -38,7 +38,7 @@ module.exports = {
           _.sum(s.store) > 0)
       });
 
-      if (container.transfer(creep, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+      if (container && container.transfer(creep, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
         creep.moveTo(container);
       }
     }
