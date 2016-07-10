@@ -36,7 +36,11 @@ module.exports = {
         filter: (s) => (
           s.structureType == STRUCTURE_CONTAINER &&
           _.sum(s.store) > 0)
-      })
+      });
+
+      if (container.transfer(creep, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+        creep.moveTo(container);
+      }
     }
   }
 }
