@@ -24,7 +24,7 @@ module.exports = function() {
       roleToBuild = 'harvester';
       bodyToBuild = [WORK,CARRY,MOVE,WORK];
     }
-    if (numberOfCouriers < minimumNumberOfCouriers) {
+    else if (numberOfCouriers < minimumNumberOfCouriers) {
       roleToBuild = 'courier';
       bodyToBuild = [MOVE,MOVE,MOVE,CARRY,CARRY,CARRY];
     }

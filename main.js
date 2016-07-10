@@ -1,4 +1,5 @@
 "use strict";
+var profiler = require('screeps-profiler');
 require('prototype.spawn')();
 require('prototype.creep')();
 var roleHarvester = require('role.harvester');
