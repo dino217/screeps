@@ -14,9 +14,14 @@ module.exports = {
 
     // If the repairer has energy it should do work
     if (creep.memory.working) {
-      var buildingToRepair = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-        filter: (s) => ((s.hits / s.hitsMax) < 0.85) && s.structureType != STRUCTURE_WALL
-      });
+      for (let percentage = 0.1; percentage < 0.8; percentage += 0.1){
+        var buildingToRepair = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+          filter: (s) =>
+            ((s.hits / s.hitsMax) < percent) && s.structureType != STRUCTURE_WALL
+        });
+        if(buildingToRepair){break;}
+      }
+
       if (buildingToRepair) {
         if(creep.repair(buildingToRepair) === ERR_NOT_IN_RANGE) {
           creep.moveTo(buildingToRepair);

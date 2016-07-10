@@ -14,10 +14,11 @@ module.exports = {
     if (creep.memory.working) {
       var target = undefined;
 
-      for (let percentage = 0.0001; percentage < 1; percentage += 0.0001) {
+      for (let percentage = 0.00001; percentage < 1; percentage += 0.00001) {
         target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
           filter: (s) => s.structureType === STRUCTURE_WALL
                       && s.hits / s.hitsMax < percentage
+                      && s.hits < 60000
         });
 
         if (target) { break }

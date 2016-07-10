@@ -9,6 +9,15 @@ var roleWallRepairer = require('role.wallRepairer');
 var roleCourier = require('role.courier');
 
 module.exports.loop = function () {
+  if(Game.time % 30 === 0) {
+    for (let name in Memory.creeps){
+      if (Game.creeps[name]===undefined){
+        delete Memory.creeps[name];
+        console.log('Clearing memory of dead creep: ' + name);
+      }
+    }
+  }
+
   Game.spawns.Spawn1.autobuild();
 
   for(let name in Game.creeps) {
