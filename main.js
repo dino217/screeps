@@ -39,4 +39,22 @@ module.exports.loop = function () {
       roleCourier.run(creep);
     }
   }
+
+  activateTowers();
+
+  function activateTowers(){
+    for (let name in Game.rooms) {
+      var room = Game.rooms[name];
+      var towers = room.find(FIND_MY_STRUCTURES, {
+        filter: (s) => s.structureType === STRUCTURE_TOWER
+      });
+
+      for (let tower of towers) {
+        var enemy = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS, 10);
+        if (enemy) {
+          tower.attack(enemy);
+        }
+      }
+    }
+  }
 }
