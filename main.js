@@ -10,6 +10,10 @@ var roleWallRepairer = require('role.wallRepairer');
 var roleCourier = require('role.courier');
 
 module.exports.loop = function () {
+  for(let name in Game.spawns){
+    var spawner = Game.spawns[name];
+    spawner.autobuild();
+  }
   Game.spawns.Spawn1.autobuild();
 
   for(let name in Game.creeps) {
