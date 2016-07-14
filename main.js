@@ -2,6 +2,7 @@
 var profiler = require('screeps-profiler');
 require('prototype.spawn')();
 require('prototype.creep')();
+require('prototype.flag')();
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
@@ -10,6 +11,16 @@ var roleWallRepairer = require('role.wallRepairer');
 var roleCourier = require('role.courier');
 
 module.exports.loop = function () {
+
+  if (Game.time % 30 == 0) {
+    for (let name in Memory.creeps){
+      if (Game.creeps[name] == undefined){
+        delete Memory.creeps[name];
+        console.log("Erasing memory of dead creep: " + name);
+      }
+    }
+  }
+
   for(let name in Game.spawns){
     var spawner = Game.spawns[name];
     spawner.autobuild();
